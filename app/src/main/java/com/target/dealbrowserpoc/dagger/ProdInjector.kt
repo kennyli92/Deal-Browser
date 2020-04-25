@@ -1,7 +1,11 @@
 package com.target.dealbrowserpoc.dagger
 
 import com.target.dealbrowserpoc.App
-import com.target.dealbrowserpoc.dagger.component.*
+import com.target.dealbrowserpoc.dagger.component.AppComponent
+import com.target.dealbrowserpoc.dagger.component.DaggerProdAppComponent
+import com.target.dealbrowserpoc.dagger.component.ProdAppComponent
+import com.target.dealbrowserpoc.dagger.component.ProdViewComponent
+import com.target.dealbrowserpoc.dagger.component.ViewComponent
 import com.target.dealbrowserpoc.dagger.module.AppModule
 import com.target.dealbrowserpoc.dagger.module.ViewModule
 

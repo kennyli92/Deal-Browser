@@ -5,6 +5,8 @@ buildscript {
     ext.rxbinding_version = '3.0.0'
     ext.dagger_version = '2.24'
     ext.lifecycle_version = '2.2.0'
+    ext.moshi_version = '1.9.2'
+    ext.retrofit_version = '2.6.4'
 
     repositories {
         google()
