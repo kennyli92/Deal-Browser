@@ -1,4 +1,4 @@
-package com.target.dealbrowserpoc.dealbrowser
+package com.target.dealbrowserpoc
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.target.dealbrowserpoc.navigation.FragmentNavigator
 import com.target.dealbrowserpoc.navigation.Navigator
 import com.target.dealbrowserpoc.dealbrowser.DealListFragment.OnFragmentInteractionListener
+import com.target.dealbrowserpoc.dealbrowser.R
 import kotlinx.android.synthetic.main.activity_main.toolbar
 
 class MainActivity : AppCompatActivity(),
@@ -25,10 +26,14 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStart() {
+        super.onStart()
+        initializeContext(activity = this)
+    }
 
-        this.releaseContext()
+    override fun onStop() {
+        super.onStop()
+        releaseContext()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

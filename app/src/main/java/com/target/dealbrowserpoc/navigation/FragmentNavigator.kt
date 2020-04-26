@@ -9,7 +9,9 @@ class FragmentNavigator : Navigator {
     private val containerId: Int = R.id.container
 
     override fun initializeContext(activity: AppCompatActivity) {
-        this.activity = activity
+        if (this.activity == null) {
+            this.activity = activity
+        }
     }
 
     override fun releaseContext() {
