@@ -8,6 +8,7 @@
     <string name="product_image_content_description">Product Image</string>
     <string name="product_title_content_description">Product Title</string>
     <string name="product_price_content_description">Product Price</string>
+    <string name="product_aisle_content_description">Product Aisle</string>
 
     <!--  Deals  -->
     <string name="deals_title">Deals</string>

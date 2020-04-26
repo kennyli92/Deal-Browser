@@ -11,5 +11,5 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface ProdAppComponent : AppComponent {
-    fun plusViewComponent(viewModule: ViewModule): ProdViewComponent
+  fun plusViewComponent(viewModule: ViewModule): ProdViewComponent
 }

@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 
 class DealsListViewModelFactory(
-        owner: SavedStateRegistryOwner,
-        defaultArgs: Bundle? = null
+  owner: SavedStateRegistryOwner,
+  defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
     override fun <T : ViewModel> create(
-            key: String,
-            modelClass: Class<T>,
-            handle: SavedStateHandle
+      key: String,
+      modelClass: Class<T>,
+      handle: SavedStateHandle
     ): T {
         return DealsListViewModel(handle = handle) as T
     }

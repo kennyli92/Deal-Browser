@@ -6,8 +6,8 @@ import com.target.dealbrowserpoc.dagger.ProdInjector
 
 class App(injector: Injector = ProdInjector()) : Application(), Injector by injector {
 
-    override fun onCreate() {
-        super.onCreate()
-        initializeAppComponent(app = this)
-    }
+  override fun onCreate() {
+    super.onCreate()
+    initializeAppComponent(app = this)
+  }
 }

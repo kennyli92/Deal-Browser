@@ -12,28 +12,28 @@ import kotlin.reflect.KProperty
  * is observed on the property host object (LifecycleOwner).
  */
 class ResetDependencyOnDestroy<T : Any> {
-    private var dependencyValue: T? = null
+  private var dependencyValue: T? = null
 
-    operator fun provideDelegate(thisRef: LifecycleOwner, property: KProperty<*>):
-            ReadWriteProperty<LifecycleOwner, T> {
-        thisRef.lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            fun destroyDependency() {
-                if (thisRef.lifecycle.currentState.isAtLeast(Lifecycle.State.DESTROYED)) {
-                    dependencyValue = null
-                }
-            }
-        })
-
-        return object : ReadWriteProperty<LifecycleOwner, T> {
-            // Throw error if dependency injection failed to set dependency value
-            override fun getValue(thisRef: LifecycleOwner, property: KProperty<*>): T {
-                return dependencyValue ?: throw UninitializedPropertyAccessException(property.name)
-            }
-
-            override fun setValue(thisRef: LifecycleOwner, property: KProperty<*>, value: T) {
-                dependencyValue = value
-            }
+  operator fun provideDelegate(thisRef: LifecycleOwner, property: KProperty<*>):
+    ReadWriteProperty<LifecycleOwner, T> {
+    thisRef.lifecycle.addObserver(object : LifecycleObserver {
+      @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+      fun destroyDependency() {
+        if (thisRef.lifecycle.currentState.isAtLeast(Lifecycle.State.DESTROYED)) {
+          dependencyValue = null
         }
+      }
+    })
+
+    return object : ReadWriteProperty<LifecycleOwner, T> {
+      // Throw error if dependency injection failed to set dependency value
+      override fun getValue(thisRef: LifecycleOwner, property: KProperty<*>): T {
+        return dependencyValue ?: throw UninitializedPropertyAccessException(property.name)
+      }
+
+      override fun setValue(thisRef: LifecycleOwner, property: KProperty<*>, value: T) {
+        dependencyValue = value
+      }
     }
+  }
 }

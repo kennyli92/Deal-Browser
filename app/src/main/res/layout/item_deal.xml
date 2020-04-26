@@ -81,13 +81,14 @@
                 android:text="@string/deal_or" />
 
             <TextView
-                android:id="@+id/deal_store_location"
+                android:id="@+id/deal_store_aisle"
                 android:layout_width="@dimen/padding_margin_2x"
                 android:layout_height="@dimen/padding_margin_2x"
                 android:textSize="@dimen/body_1"
                 android:textColor="@color/target_red_font"
                 android:gravity="center"
                 android:background="@drawable/bg_outline_circle"
+                android:contentDescription="@string/product_aisle_content_description"
                 tools:text="B2" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
