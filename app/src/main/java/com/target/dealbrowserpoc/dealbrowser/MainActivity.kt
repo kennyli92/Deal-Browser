@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.target.dealbrowserpoc.Navigation.FragmentNavigator
-import com.target.dealbrowserpoc.Navigation.Navigator
+import com.target.dealbrowserpoc.navigation.FragmentNavigator
+import com.target.dealbrowserpoc.navigation.Navigator
 import com.target.dealbrowserpoc.dealbrowser.DealListFragment.OnFragmentInteractionListener
 import kotlinx.android.synthetic.main.activity_main.toolbar
 

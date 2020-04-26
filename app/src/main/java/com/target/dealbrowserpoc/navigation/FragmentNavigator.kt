@@ -1,4 +1,4 @@
-package com.target.dealbrowserpoc.Navigation
+package com.target.dealbrowserpoc.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import com.target.dealbrowserpoc.dealbrowser.DealListFragment
