@@ -2,6 +2,8 @@ package com.target.dealbrowserpoc.deals.list
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.target.dealbrowserpoc.deals.data.DealsRepository
+import com.target.dealbrowserpoc.deals.data.DealsResponse
 import com.target.dealbrowserpoc.log.Logging
 import com.target.dealbrowserpoc.utils.StateEvent
 import io.reactivex.Observable
@@ -11,7 +13,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 
 class DealsListViewModel(
-  private val handle: SavedStateHandle
+  private val handle: SavedStateHandle,
+  private val dealsRepository: DealsRepository
 ) : ViewModel() {
   companion object {
     private const val STATE_KEY = "state"
@@ -56,9 +59,28 @@ class DealsListViewModel(
   }
 
   private fun onLoad(
-    action: DealsListAction.Load
+    action: DealsListAction
   ): Observable<StateEvent<DealsListState, DealsListEvent>> {
-
-    return Observable.just(StateEvent(DealsListState.Noop, DealsListEvent.Noop))
+    return dealsRepository.getDeals()
+      .observeOn(Schedulers.computation())
+      .flatMapObservable { dealsResponse ->
+        when (dealsResponse) {
+          is DealsResponse.Deals ->
+            Observable.just(StateEvent(
+              DealsListState.Deals(deals = dealsResponse.deals),
+              DealsListEvent.Noop
+            ))
+          is DealsResponse.NotFound -> Observable.just(
+            StateEvent(
+              DealsListState.Noop,
+              DealsListEvent.Noop
+            ))
+          is DealsResponse.UnknownError -> Observable.just(
+            StateEvent(
+              DealsListState.Noop,
+              DealsListEvent.Noop
+            ))
+        }
+      }
   }
 }

@@ -5,8 +5,10 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
+import com.target.dealbrowserpoc.deals.data.DealsRepository
 
 class DealsListViewModelFactory(
+  private val dealsRepository: DealsRepository,
   owner: SavedStateRegistryOwner,
   defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -15,6 +17,6 @@ class DealsListViewModelFactory(
       modelClass: Class<T>,
       handle: SavedStateHandle
     ): T {
-        return DealsListViewModel(handle = handle) as T
+        return DealsListViewModel(handle = handle, dealsRepository = dealsRepository) as T
     }
 }
