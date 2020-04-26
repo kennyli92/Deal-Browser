@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.target.dealbrowserpoc.dagger.Injector
 import com.target.dealbrowserpoc.dealbrowser.R
@@ -15,12 +18,23 @@ import kotlinx.android.synthetic.main.fragment_deals_list.view.deals_list_recycl
 
 class DealsListFragment : Fragment() {
     private val disposables: CompositeDisposable by DisposableOnLifecycleChange()
+    private lateinit var vm: DealsListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val app = application() as Injector
         app.viewComponent.inject(this)
+        vm = ViewModelProvider(
+                this,
+                DealsListViewModelFactory(
+                        owner = this
+                )
+        ).get(DealsListViewModel::class.java)
+
+        // set title
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+                resources.getString(R.string.deals_title)
     }
 
     override fun onCreateView(

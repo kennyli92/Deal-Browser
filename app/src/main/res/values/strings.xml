@@ -10,6 +10,9 @@
     <string name="product_price_content_description">Product Price</string>
 
     <!--  Deals  -->
+    <string name="deals_title">Deals</string>
     <string name="deal_ship">ship</string>
     <string name="deal_or">or</string>
+
+    <string name="deals_details">Details</string>
 </resources>
