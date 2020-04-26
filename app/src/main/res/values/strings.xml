@@ -3,5 +3,13 @@
     <string name="app_name">Deal Browser</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!--  Content Description  -->
     <string name="product_image_content_description">Product Image</string>
+    <string name="product_title_content_description">Product Title</string>
+    <string name="product_price_content_description">Product Price</string>
+
+    <!--  Deals  -->
+    <string name="deal_ship">ship</string>
+    <string name="deal_or">or</string>
 </resources>
