@@ -1,10 +1,12 @@
 package com.target.dealbrowserpoc.dealbrowser;
 
 import android.app.Activity;
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.ListFragment;
 
 import com.target.dealbrowserpoc.dealbrowser.deals.DealContent;
 
@@ -24,6 +26,7 @@ public class DealListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setListAdapter(new DealListItemAdapter(getActivity(), DealContent.ITEMS));
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("hi");
     }
 
 
