@@ -49,10 +49,6 @@ class DealsListFragment : Fragment() {
         dealsRepository = dealsRepository
       )
     ).get(DealsListViewModel::class.java)
-
-    // set title
-    (activity as AppCompatActivity?)!!.supportActionBar!!.title =
-      resources.getString(R.string.deals_title)
   }
 
   override fun onCreateView(
@@ -74,6 +70,10 @@ class DealsListFragment : Fragment() {
 
   override fun onStart() {
     super.onStart()
+    // set title
+    (activity as AppCompatActivity?)!!.supportActionBar!!.title =
+      resources.getString(R.string.deals_title)
+
     vm.restoreState()
     val rootView = requireView()
 

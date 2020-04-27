@@ -29,6 +29,7 @@ class DealViewHolder(
       .error(R.drawable.ic_error_outline_24dp)
       .into(itemView.deal_image_view)
 
+    itemView.deal_image_view.contentDescription = item.title
     itemView.deal_title.text = item.title
     itemView.deal_price.text = item.salePrice ?: item.price
     itemView.deal_store_aisle.text = item.aisle.capitalize()
