@@ -1,10 +1,10 @@
 package com.target.dealbrowserpoc.deals.list
 
-import com.target.dealbrowserpoc.deals.data.Deal
+import com.target.dealbrowserpoc.deals.recyclerView.DealsListItem
 
 sealed class DealsListState {
   object Noop : DealsListState()
-  data class Deals(
-    val deals: List<Deal> = emptyList()
+  data class ListItem(
+    val dealsListItem: List<DealsListItem> = emptyList()
   ) : DealsListState()
 }

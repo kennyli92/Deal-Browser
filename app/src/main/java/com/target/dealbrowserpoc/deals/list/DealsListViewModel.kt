@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.target.dealbrowserpoc.deals.data.DealsRepository
 import com.target.dealbrowserpoc.deals.data.DealsResponse
+import com.target.dealbrowserpoc.deals.recyclerView.DealsListItem
 import com.target.dealbrowserpoc.log.Logging
 import com.target.dealbrowserpoc.utils.StateEvent
 import io.reactivex.Observable
@@ -51,6 +52,7 @@ class DealsListViewModel(
       .flatMap { action ->
         when (action) {
           is DealsListAction.Load -> onLoad(action = action)
+          is DealsListAction.DealClick -> onDealClick(action = action)
         }
       }.subscribe({
         this.state = it.state
@@ -58,6 +60,7 @@ class DealsListViewModel(
       }, Logging.logErrorAndThrow())
   }
 
+  // We can do state recovery here should there be a need
   private fun onLoad(
     action: DealsListAction
   ): Observable<StateEvent<DealsListState, DealsListEvent>> {
@@ -65,11 +68,15 @@ class DealsListViewModel(
       .observeOn(Schedulers.computation())
       .flatMapObservable { dealsResponse ->
         when (dealsResponse) {
-          is DealsResponse.Deals ->
+          is DealsResponse.Deals -> {
+            val dealsListItem = dealsResponse.deals.map { deal ->
+              DealsListItem.DealView(deal = deal)
+            }
             Observable.just(StateEvent(
-              DealsListState.Deals(deals = dealsResponse.deals),
+              DealsListState.ListItem(dealsListItem = dealsListItem),
               DealsListEvent.Noop
             ))
+          }
           is DealsResponse.NotFound -> Observable.just(
             StateEvent(
               DealsListState.Noop,
@@ -82,5 +89,16 @@ class DealsListViewModel(
             ))
         }
       }
+  }
+
+  private fun onDealClick(
+    action: DealsListAction.DealClick
+  ): Observable<StateEvent<DealsListState, DealsListEvent>> {
+    return Observable.just(
+      StateEvent(
+        state = DealsListState.Noop,
+        event = DealsListEvent.NavigateToDealDetails(id = action.deal.id)
+      )
+    )
   }
 }

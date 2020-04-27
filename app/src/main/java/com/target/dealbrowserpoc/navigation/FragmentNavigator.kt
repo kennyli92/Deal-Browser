@@ -1,8 +1,8 @@
 package com.target.dealbrowserpoc.navigation
 
 import androidx.appcompat.app.AppCompatActivity
-import com.target.dealbrowserpoc.dealbrowser.DealListFragment
 import com.target.dealbrowserpoc.dealbrowser.R
+import com.target.dealbrowserpoc.deals.list.DealsListFragment
 
 class FragmentNavigator : Navigator {
   private var activity: AppCompatActivity? = null
@@ -21,7 +21,7 @@ class FragmentNavigator : Navigator {
   override fun navigateDealsList() {
     activity!!.supportFragmentManager
       .beginTransaction()
-      .add(containerId, DealListFragment())
+      .add(containerId, DealsListFragment())
       .commit()
   }
 
