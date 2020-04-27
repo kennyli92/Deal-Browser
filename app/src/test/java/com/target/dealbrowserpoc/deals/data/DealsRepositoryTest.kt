@@ -22,7 +22,7 @@ class DealsRepositoryTest {
   fun before() {
     RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
     RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-    RxJavaPlugins.setComputationSchedulerHandler { Schedulers.io() }
+    RxJavaPlugins.setIoSchedulerHandler { Schedulers.io() }
   }
 
   @After
