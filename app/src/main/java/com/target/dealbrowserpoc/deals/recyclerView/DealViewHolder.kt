@@ -26,6 +26,7 @@ class DealViewHolder(
     Glide.with(itemView)
       .load(item.image)
       .placeholder(R.drawable.ic_error_outline_24dp)
+      .error(R.drawable.ic_error_outline_24dp)
       .into(itemView.deal_image_view)
 
     itemView.deal_title.text = item.title
