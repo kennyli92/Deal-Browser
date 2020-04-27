@@ -17,6 +17,7 @@ import com.target.dealbrowserpoc.deals.data.DealsRepository
 import com.target.dealbrowserpoc.deals.recyclerView.DealsListAdapter
 import com.target.dealbrowserpoc.extensions.application
 import com.target.dealbrowserpoc.extensions.plusAssign
+import com.target.dealbrowserpoc.extensions.showSnackBar
 import com.target.dealbrowserpoc.log.Logging
 import com.target.dealbrowserpoc.utils.DisposableOnLifecycleChange
 import com.target.dealbrowserpoc.utils.ResetDependencyOnDestroy
@@ -96,6 +97,8 @@ class DealsListFragment : Fragment() {
       .subscribe({ event ->
         when (event) {
           is DealsListEvent.Noop -> {}
+          is DealsListEvent.NavigateToDealDetails -> onNavigateToDealDetailsEvent(event = event)
+          is DealsListEvent.Snackbar -> onSnackbarEvent(event = event)
         }
       }, Logging.logErrorAndThrow())
 
@@ -117,5 +120,14 @@ class DealsListFragment : Fragment() {
   private fun onLoadState(state: DealsListState.ListItem) {
     adapter.items = state.dealsListItem
     adapter.notifyDataSetChanged()
+  }
+
+  /** Event Handlers **/
+  private fun onNavigateToDealDetailsEvent(event: DealsListEvent.NavigateToDealDetails) {
+    // TODO: navigate to deal details
+  }
+
+  private fun onSnackbarEvent(event: DealsListEvent.Snackbar) {
+    requireView().showSnackBar(snackbarViewModel = event.vm)
   }
 }
