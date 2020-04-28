@@ -21,8 +21,10 @@
   <string name="deals_get_not_found">No deals at this time!</string>
   <string name="deals_get_unknown_error">Unknown error - unable to get deals at this moment!</string>
 
-  <string name="deals_details">Details</string>
+  <string name="deal_details_title">Details</string>
   <string name="deals_details_reg_label">Reg: </string>
   <string name="deals_details_add_to_list">add to list</string>
   <string name="deals_details_add_to_cart">add to cart</string>
+  <string name="deal_details_get_not_found">Unable to find deal!</string>
+  <string name="deal_details_get_unknown_error">Unknown error - unable to get deal info at this moment!</string>
 </resources>
