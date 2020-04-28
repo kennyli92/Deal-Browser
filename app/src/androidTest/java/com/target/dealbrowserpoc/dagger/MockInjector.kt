@@ -2,6 +2,7 @@ package com.target.dealbrowserpoc.dagger
 
 import com.target.dealbrowserpoc.App
 import com.target.dealbrowserpoc.dagger.component.AppComponent
+import com.target.dealbrowserpoc.dagger.component.DaggerMockAppComponent
 import com.target.dealbrowserpoc.dagger.component.MockAppComponent
 import com.target.dealbrowserpoc.dagger.component.MockViewComponent
 import com.target.dealbrowserpoc.dagger.component.ViewComponent
@@ -13,10 +14,10 @@ class MockInjector : Injector {
   private var _viewComponent: MockViewComponent? = null
 
   override fun initializeAppComponent(app: App) {
-    val appModule = MockAppModule(app = app)
+    val mockAppModule = MockAppModule(app = app)
 
     _appComponent = DaggerMockAppComponent.builder()
-      .appModule(appModule)
+      .mockAppModule(mockAppModule)
       .build()
   }
 

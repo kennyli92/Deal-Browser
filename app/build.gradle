@@ -123,4 +123,7 @@ dependencies {
   androidTestImplementation 'org.mockito:mockito-android:2.27.0'
   androidTestImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
   androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
+  // need this to generate dagger code in android test directory
+  kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
