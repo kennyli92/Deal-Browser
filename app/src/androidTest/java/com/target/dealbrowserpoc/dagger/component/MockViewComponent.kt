@@ -2,6 +2,7 @@ package com.target.dealbrowserpoc.dagger.component
 
 import com.target.dealbrowserpoc.dagger.module.MockViewModule
 import com.target.dealbrowserpoc.dagger.scope.ViewScope
+import com.target.dealbrowserpoc.stub.MockViewModuleStubber
 import dagger.Subcomponent
 
 /**
@@ -9,4 +10,6 @@ import dagger.Subcomponent
  */
 @ViewScope
 @Subcomponent(modules = [MockViewModule::class])
-interface MockViewComponent : ViewComponent
+interface MockViewComponent : ViewComponent {
+  fun inject(mockViewModuleStubber: MockViewModuleStubber)
+}
