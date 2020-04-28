@@ -19,11 +19,13 @@ import com.target.dealbrowserpoc.extensions.application
 import com.target.dealbrowserpoc.extensions.plusAssign
 import com.target.dealbrowserpoc.extensions.showSnackBar
 import com.target.dealbrowserpoc.log.Logging
+import com.target.dealbrowserpoc.navigation.Navigator
 import com.target.dealbrowserpoc.utils.DisposableOnLifecycleChange
 import com.target.dealbrowserpoc.utils.ResetDependencyOnDestroy
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
+import java.lang.IllegalStateException
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_deals_list.view.deals_list_recycler_view
 
@@ -36,6 +38,7 @@ class DealsListFragment : Fragment() {
 
   private lateinit var adapter: DealsListAdapter
   private val dealClickObserver = PublishSubject.create<Deal>()
+  private lateinit var navigator: Navigator
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -49,6 +52,12 @@ class DealsListFragment : Fragment() {
         dealsRepository = dealsRepository
       )
     ).get(DealsListViewModel::class.java)
+
+    if (activity is Navigator) {
+      navigator = activity as Navigator
+    } else {
+      throw IllegalStateException("Activity Needs to Implement Navigator!")
+    }
   }
 
   override fun onCreateView(
@@ -70,9 +79,7 @@ class DealsListFragment : Fragment() {
 
   override fun onStart() {
     super.onStart()
-    // set title
-    (activity as AppCompatActivity?)!!.supportActionBar!!.title =
-      resources.getString(R.string.deals_title)
+    setupActionBar()
 
     vm.restoreState()
     val rootView = requireView()
@@ -124,10 +131,19 @@ class DealsListFragment : Fragment() {
 
   /** Event Handlers **/
   private fun onNavigateToDealDetailsEvent(event: DealsListEvent.NavigateToDealDetails) {
-    // TODO: navigate to deal details
+    navigator.navigateDealsDetails(id = event.id)
   }
 
   private fun onSnackbarEvent(event: DealsListEvent.Snackbar) {
     requireView().showSnackBar(snackbarViewModel = event.vm)
+  }
+
+  /** Other **/
+  private fun setupActionBar() {
+    // set title
+    val actionBar = (activity as AppCompatActivity?)!!.supportActionBar!!
+    actionBar.title = resources.getString(R.string.deals_title)
+    actionBar.setDisplayHomeAsUpEnabled(false)
+    actionBar.setDisplayShowHomeEnabled(false)
   }
 }

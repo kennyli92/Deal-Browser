@@ -65,13 +65,13 @@ class DealDetailsViewModel(
   /**
    * Observe actions to be handled created from click streams
    */
-  fun actionHandler(actionSignal: Observable<DealDetailAction>): Disposable {
+  fun actionHandler(actionSignal: Observable<DealDetailsAction>): Disposable {
     return actionSignal
       .observeOn(Schedulers.computation())
       .flatMap { action ->
         when (action) {
-          is DealDetailAction.Load -> onLoad(action = action)
-          is DealDetailAction.Back -> onBackClick()
+          is DealDetailsAction.Load -> onLoad(action = action)
+          is DealDetailsAction.Back -> onBackClick()
         }
       }.subscribe({
         this.state = it.state
@@ -83,7 +83,7 @@ class DealDetailsViewModel(
    * We can do state recovery onLoad() should there be a need
    */
   private fun onLoad(
-    action: DealDetailAction.Load
+    action: DealDetailsAction.Load
   ): Observable<StateEvent<DealDetailsState, DealDetailsEvent>> {
     return dealsRepository.getDeals()
       .observeOn(Schedulers.computation())

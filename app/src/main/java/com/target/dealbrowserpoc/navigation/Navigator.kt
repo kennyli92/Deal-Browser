@@ -3,17 +3,19 @@ package com.target.dealbrowserpoc.navigation
 import androidx.appcompat.app.AppCompatActivity
 
 interface Navigator {
-    /**
-     * Initializes the activity to use fragment manager
-     */
-    fun initializeContext(activity: AppCompatActivity)
+  /**
+   * Initializes the activity to use fragment manager
+   */
+  fun initializeContext(activity: AppCompatActivity)
 
-    /**
-     * releases the activity context to prevent memory leak
-     */
-    fun releaseContext()
+  /**
+   * releases the activity context to prevent memory leak
+   */
+  fun releaseContext()
 
-    fun navigateDealsList()
+  fun back()
 
-    fun navigateDealsDetails(id: Int)
+  fun navigateDealsList()
+
+  fun navigateDealsDetails(id: String)
 }

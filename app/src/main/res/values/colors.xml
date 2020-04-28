@@ -15,6 +15,7 @@
   <color name="target_red_font">#ffcc0000</color>
 
   <!--  background  -->
+  <color name="default_bg">#ffffffff</color>
   <color name="low_contrast_bg">#ffe0e0e0</color>
   <color name="target_red_bg">#ffcc0000</color>
 </resources>
