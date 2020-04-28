@@ -78,7 +78,7 @@ class DealsListFragmentTest {
   )
 
   @Test
-  fun display_deals_list_when_get_deals_api_returns_data() {
+  fun display_deals_list_when_get_deals_api_returns_data_and_navigate_to_deal_details() {
     state {
       dealsState(dealsState = DealsState.GetDeals(
         response = DealsState.GetDealsResponse.Success(
@@ -93,6 +93,17 @@ class DealsListFragmentTest {
       isLandingScreen()
       hasDealAtPosition(position = 0)
       hasDealAtPosition(position = 1)
+
+      tapDealAtPosition(position = 0)
+    }.navigateToDealDetails {
+      isLandingScreen()
+
+      hasProductImage()
+      hasProductSalesPrice()
+      hasProductRegularPrice()
+      hasProductTitle()
+      hasAddToListButton()
+      hasAddToCartButton()
     }
   }
 }
