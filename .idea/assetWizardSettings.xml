@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_error_outline_24dp" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/error_outline-black-24dp.svg" />
+                            <entry key="outputName" value="ic_wallpaper_24dp" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/wallpaper-black-24dp.svg" />
                           </map>
                         </option>
                       </PersistentState>

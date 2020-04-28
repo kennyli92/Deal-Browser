@@ -9,6 +9,10 @@
   <string name="product_title_content_description">Product Title</string>
   <string name="product_price_content_description">Product Price</string>
   <string name="product_aisle_content_description">Product Aisle</string>
+  <string name="product_sales_price_content_description">Product Sales Price</string>
+  <string name="product_regular_price_content_description">Product Regular Price</string>
+  <string name="product_add_to_list_content_description">Add Product To List</string>
+  <string name="product_add_to_cart_content_description">Add Product To Cart</string>
 
   <!--  Deals  -->
   <string name="deals_title">Deals</string>
@@ -18,4 +22,7 @@
   <string name="deals_get_unknown_error">Unknown error - unable to get deals at this moment!</string>
 
   <string name="deals_details">Details</string>
+  <string name="deals_details_reg_label">Reg: </string>
+  <string name="deals_details_add_to_list">add to list</string>
+  <string name="deals_details_add_to_cart">add to cart</string>
 </resources>

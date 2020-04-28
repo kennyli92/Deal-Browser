@@ -40,7 +40,7 @@
       android:id="@+id/deal_divider"
       android:layout_width="match_parent"
       android:layout_height="1dp"
-      android:background="@color/subtle_contrast_bg"
+      android:background="@color/low_contrast_bg"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,7 +83,7 @@
         android:layout_marginEnd="@dimen/padding_margin_quarter"
         android:layout_marginRight="@dimen/padding_margin_quarter"
         android:text="@string/deal_or"
-        android:textColor="@color/subtle_contrast_font"
+        android:textColor="@color/low_contrast_gray_font"
         android:textSize="@dimen/body_1" />
 
       <TextView

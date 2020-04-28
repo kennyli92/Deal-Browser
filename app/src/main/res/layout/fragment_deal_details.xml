@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/padding_margin">
+
+      <ImageView
+        android:id="@+id/deal_details_image_view"
+        android:layout_width="@dimen/deal_details_image_size"
+        android:layout_height="@dimen/deal_details_image_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_error_outline_24dp"/>
+
+      <TextView
+        android:id="@+id/deal_details_sales_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_margin"
+        android:contentDescription="@string/product_sales_price_content_description"
+        android:textColor="@color/target_red_font"
+        android:textSize="@dimen/h4"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/deal_details_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="$8.98" />
+
+      <TextView
+        android:id="@+id/deal_details_reg_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_margin"
+        android:contentDescription="@string/product_sales_price_content_description"
+        android:textColor="@color/high_contrast_gray_font"
+        android:textSize="@dimen/h5"
+        android:text="@string/deals_details_reg_label"
+        app:layout_constraintTop_toBottomOf="@+id/deal_details_image_view"
+        app:layout_constraintBottom_toBottomOf="@+id/deal_details_sales_price"
+        app:layout_constraintEnd_toStartOf="@+id/deal_details_regular_price"
+        tools:text="Reg: " />
+      <TextView
+        android:id="@+id/deal_details_regular_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_margin"
+        android:contentDescription="@string/product_sales_price_content_description"
+        android:textColor="@color/high_contrast_gray_font"
+        android:textSize="@dimen/h5"
+        app:layout_constraintTop_toBottomOf="@+id/deal_details_image_view"
+        app:layout_constraintBottom_toBottomOf="@+id/deal_details_sales_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="$17.99" />
+
+      <TextView
+        android:id="@+id/deal_details_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_margin_half"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingRight="@dimen/padding_margin"
+        android:paddingEnd="@dimen/padding_margin"
+        android:contentDescription="@string/product_title_content_description"
+        android:textColor="@color/default_font"
+        android:textSize="@dimen/h5"
+        app:layout_constraintTop_toBottomOf="@+id/deal_details_sales_price"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Product Title" />
+
+      <TextView
+        android:id="@+id/deal_details_product_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_margin_half"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingRight="@dimen/padding_margin"
+        android:paddingEnd="@dimen/padding_margin"
+        android:contentDescription="@string/product_title_content_description"
+        android:textColor="@color/default_font"
+        android:textSize="@dimen/body_1"
+        app:layout_constraintTop_toBottomOf="@+id/deal_details_title"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="ad laboris do ad id ipsum dolore ad magna occaecat ea eu ex nisi culpa amet id officia labore ut tempor est dolor commodo aliqua ex nisi consectetur veniam ut aliquip amet esse exercitation voluptate aute id adipisicing nostrud quis non eu dolore ipsum ut officia pariatur anim amet id ex veniam sunt sit officia non excepteur cupidatat consequat incididunt ad culpa aliqua nisi magna voluptate esse excepteur id magna amet aute enim esse enim ex esse nostrud et sint nostrud irure ex aute nisi nisi nisi minim Lorem duis officia reprehenderit eiusmod ea magna tempor est" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </ScrollView>
+
+  <FrameLayout
+    android:id="@+id/deal_details_add_to_list_button"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/deal_details_add_to_cart_button"
+    app:layout_constraintHorizontal_weight="1">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:minHeight="@dimen/minimum_button_size"
+      android:textSize="@dimen/h5"
+      android:contentDescription="@string/product_add_to_list_content_description"
+      android:background="@color/low_contrast_bg"
+      android:text="@string/deals_details_add_to_list"
+      android:textColor="@color/default_font"
+      android:gravity="center"
+      />
+  </FrameLayout>
+
+  <FrameLayout
+    android:id="@+id/deal_details_add_to_cart_button"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/deal_details_add_to_list_button"
+    app:layout_constraintHorizontal_weight="1">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:minHeight="@dimen/minimum_button_size"
+      android:textSize="@dimen/h5"
+      android:contentDescription="@string/product_add_to_cart_content_description"
+      android:background="@color/target_red_bg"
+      android:text="@string/deals_details_add_to_cart"
+      android:textColor="@color/high_contrast_font"
+      android:gravity="center"
+      />
+  </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

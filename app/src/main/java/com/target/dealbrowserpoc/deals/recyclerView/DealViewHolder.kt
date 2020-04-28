@@ -22,10 +22,15 @@ class DealViewHolder(
   private val disposables: CompositeDisposable,
   private val dealClickObserver: Observer<Deal>
 ) : RecyclerView.ViewHolder(view) {
+  companion object {
+    private const val TIMEOUT_IN_SECONDS = 30000
+  }
+
   fun bind(item: Deal) {
     Glide.with(itemView)
       .load(item.image)
-      .placeholder(R.drawable.ic_error_outline_24dp)
+      .timeout(TIMEOUT_IN_SECONDS)
+      .placeholder(R.drawable.ic_wallpaper_24dp)
       .error(R.drawable.ic_error_outline_24dp)
       .into(itemView.deal_image_view)
 
