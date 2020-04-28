@@ -8,6 +8,10 @@ sealed class DealDetailsState : Parcelable {
   object Noop : DealDetailsState()
   @Parcelize
   data class Detail(
-    val imageUrl: String
+    val imageUrl: String,
+    val salePrice: String,
+    val regularPrice: String = "",
+    val title: String,
+    val description: String
   ) : DealDetailsState()
 }

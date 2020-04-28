@@ -1,5 +1,6 @@
 package com.target.dealbrowserpoc.deals.details
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.target.dealbrowserpoc.dagger.Injector
 import com.target.dealbrowserpoc.dealbrowser.R
 import com.target.dealbrowserpoc.deals.data.DealsRepository
@@ -21,8 +23,12 @@ import com.target.dealbrowserpoc.utils.ResetDependencyOnDestroy
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
-import java.lang.IllegalStateException
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_deal_details.view.deal_details_image_view
+import kotlinx.android.synthetic.main.fragment_deal_details.view.deal_details_product_description
+import kotlinx.android.synthetic.main.fragment_deal_details.view.deal_details_regular_price
+import kotlinx.android.synthetic.main.fragment_deal_details.view.deal_details_sales_price
+import kotlinx.android.synthetic.main.fragment_deal_details.view.deal_details_title
 
 class DealDetailsFragment : Fragment() {
   @set:Inject
@@ -37,6 +43,7 @@ class DealDetailsFragment : Fragment() {
 
   companion object {
     const val DEAL_ID_ARG = "dealId"
+    private const val TIMEOUT_IN_SECONDS = 30000
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +96,7 @@ class DealDetailsFragment : Fragment() {
       .subscribe({ event ->
         when (event) {
           is DealDetailsEvent.Noop -> {}
-          is DealDetailsEvent.Back -> onBackEvent(event = event)
+          is DealDetailsEvent.Back -> onBackEvent()
           is DealDetailsEvent.Snackbar -> onSnackbarEvent(event = event)
         }
       }, Logging.logErrorAndThrow())
@@ -120,12 +127,26 @@ class DealDetailsFragment : Fragment() {
 
   /** State Handlers **/
   private fun onDetailState(state: DealDetailsState.Detail) {
-    // TODO: populate data
+    val rootView = requireView()
+
+    Glide.with(rootView)
+      .load(state.imageUrl)
+      .timeout(TIMEOUT_IN_SECONDS)
+      .placeholder(R.drawable.ic_wallpaper_24dp)
+      .error(R.drawable.ic_error_outline_24dp)
+      .into(rootView.deal_details_image_view)
+
+    rootView.deal_details_sales_price.text = state.salePrice
+    rootView.deal_details_regular_price.text = state.regularPrice
+    rootView.deal_details_regular_price.paintFlags =
+      rootView.deal_details_regular_price.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+    rootView.deal_details_title.text = state.title
+    rootView.deal_details_product_description.text = state.description
   }
 
   /** Event Handlers **/
-  private fun onBackEvent(event: DealDetailsEvent.Back) {
-    // TODO: navigate back
+  private fun onBackEvent() {
+    navigator.back()
   }
 
   private fun onSnackbarEvent(event: DealDetailsEvent.Snackbar) {

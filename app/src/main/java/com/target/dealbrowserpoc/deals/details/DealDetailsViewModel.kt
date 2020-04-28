@@ -95,7 +95,13 @@ class DealDetailsViewModel(
             }
             return@flatMapObservable if (selectedDeal != null) {
               Observable.just(StateEvent(
-                DealDetailsState.Detail(imageUrl = selectedDeal.image),
+                DealDetailsState.Detail(
+                  imageUrl = selectedDeal.image,
+                  salePrice = selectedDeal.salePrice ?: selectedDeal.price,
+                  regularPrice = selectedDeal.price,
+                  title = selectedDeal.title,
+                  description = selectedDeal.description
+                ),
                 DealDetailsEvent.Noop
               ))
             } else {
