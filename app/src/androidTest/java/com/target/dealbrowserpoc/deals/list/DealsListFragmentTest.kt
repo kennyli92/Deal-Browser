@@ -91,6 +91,8 @@ class DealsListFragmentTest {
 
     DealsList {
       isLandingScreen()
+      hasDealAtPosition(position = 0)
+      hasDealAtPosition(position = 1)
     }
   }
 }
