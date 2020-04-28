@@ -10,7 +10,6 @@ import com.target.dealbrowserpoc.extensions.plusAssign
 import com.target.dealbrowserpoc.log.Logging
 import io.reactivex.Observer
 import io.reactivex.disposables.CompositeDisposable
-import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.item_deal.view.deal_container
 import kotlinx.android.synthetic.main.item_deal.view.deal_image_view
 import kotlinx.android.synthetic.main.item_deal.view.deal_price
@@ -40,7 +39,6 @@ class DealViewHolder(
     itemView.deal_store_aisle.text = item.aisle.capitalize()
 
     disposables += itemView.deal_container.clicks()
-      .throttleLast(250, TimeUnit.MILLISECONDS)
       .subscribe({
         dealClickObserver.onNext(item)
       }, Logging.logErrorAndThrow())

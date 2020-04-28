@@ -30,8 +30,9 @@ class DealsListFragmentTest {
   @Before
   fun setUp() {
     RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+    RxAndroidPlugins.setMainThreadSchedulerHandler { Schedulers.trampoline() }
     RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
-    RxJavaPlugins.setIoSchedulerHandler { Schedulers.io() }
+    RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
 
     val mockApp: MockApp = ApplicationProvider.getApplicationContext()
     mockStubber = MockStubber(injector = mockApp)
@@ -87,5 +88,9 @@ class DealsListFragmentTest {
     }
 
     mainActivityTestRule.launchActivity(null)
+
+    DealsList {
+      isLandingScreen()
+    }
   }
 }
