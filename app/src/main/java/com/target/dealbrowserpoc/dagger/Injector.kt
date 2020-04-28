@@ -1,11 +1,11 @@
 package com.target.dealbrowserpoc.dagger
 
-import android.app.Application
+import com.target.dealbrowserpoc.App
 import com.target.dealbrowserpoc.dagger.component.AppComponent
 import com.target.dealbrowserpoc.dagger.component.ViewComponent
 
 interface Injector {
-    fun initializeAppComponent(app: Application)
+    fun initializeAppComponent(app: App)
 
     val appComponent: AppComponent
 
