@@ -10,6 +10,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+
+allOpen {
+  annotation("com.target.dealbrowserpoc.annotation.OpenClass")
+}
 
 android {
   compileSdkVersion 29
@@ -22,6 +27,7 @@ android {
     versionCode 1
     versionName "1.0"
     multiDexEnabled true
+    testInstrumentationRunner "com.target.dealbrowserpoc.MockTestRunner"
   }
   buildTypes {
     release {
@@ -108,4 +114,5 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
   androidTestImplementation 'androidx.test.ext:truth:1.2.0'
+  androidTestImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 }
