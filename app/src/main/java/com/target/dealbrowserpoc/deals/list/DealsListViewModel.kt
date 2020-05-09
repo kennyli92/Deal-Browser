@@ -28,7 +28,7 @@ class DealsListViewModel(
   private var state: DealsListState = DealsListState.Noop
 
   /**
-   * Should be called onStop() to save state upon backgrounding or during a process death
+   * Should be called onStop() to save state upon backgrounding
    */
   fun saveState() {
     handle[STATE_KEY] = state
@@ -36,6 +36,7 @@ class DealsListViewModel(
 
   /**
    * should be called onStart() to recover state upon foregrounding
+   * from backgrounding or a process death
    */
   fun restoreState() {
     state = handle[STATE_KEY] ?: DealsListState.Noop

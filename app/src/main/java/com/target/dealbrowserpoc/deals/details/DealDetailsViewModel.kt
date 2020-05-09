@@ -27,7 +27,7 @@ class DealDetailsViewModel(
   private var state: DealDetailsState = DealDetailsState.Noop
 
   /**
-   * Should be called onStop() to save state upon backgrounding or during a process death
+   * Should be called onStop() to save state upon backgrounding
    */
   fun saveState() {
     handle[STATE_KEY] = state
@@ -35,6 +35,7 @@ class DealDetailsViewModel(
 
   /**
    * should be called onStart() to recover state upon foregrounding
+   * from backgrounding or a process death
    */
   fun restoreState() {
     state = handle[STATE_KEY] ?: DealDetailsState.Noop
